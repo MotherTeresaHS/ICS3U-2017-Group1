@@ -1,26 +1,21 @@
 # Created by: Julie Nguyen
 # Created on: Dec 2017
 # Created for: ICS3U
-# This scene shows the levels
+# This scene shows the scene that is shown after the user successfuly completes a level.
 
 from scene import *
 import ui
 
 
-class LevelsListScene(Scene):
+class LevelCompletedScene(Scene):
     def setup(self):
         # this method is called, when user moves to this scene
         
-        # add background
+        # add background color
         self.background = SpriteNode(position = self.size / 2, 
                                      color = 'green', 
                                      parent = self, 
                                      size = self.size)
-                                     
-        #self.level_1_button = SpriteNode('./assets/sprites/FILENAME.png',
-                                       #parent = self,
-                                       #position = self.size/2(change to 3),
-                                       #scale = 0.75)
     
     def update(self):
         # this method is called, hopefully, 60 times a second
