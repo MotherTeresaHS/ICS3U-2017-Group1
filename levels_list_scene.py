@@ -13,7 +13,7 @@ class LevelsListScene(Scene):
         
         # add background
         self.background = SpriteNode(position = self.size / 2, 
-                                     color = 'white', 
+                                     color = 'green', 
                                      parent = self, 
                                      size = self.size)
                                      
