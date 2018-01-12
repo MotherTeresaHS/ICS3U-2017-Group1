@@ -5,7 +5,6 @@
 
 from scene import *
 import ui
-from numpy import random
 
 from main_menu_scene import *
 
@@ -19,45 +18,42 @@ class SettingScene(Scene):
         self.screen_center_y = self.size_of_screen_y/2
         
         # add background color
-        background_position = Vector2(self.screen_center_x, 
-                                      self.screen_center_y)
-        self.background = SpriteNode('./assets/sprites/star_background.png',
-                                     position = background_position, 
+        self.background = SpriteNode(color = 'white',
+                                     position = self.size/2, 
                                      parent = self, 
                                      size = self.size)
                                      
-        #sound_on_button_position = Vector2()
-        #sound_on_button_position.x = self.screen_center_x 
-        #sound_on_button_position.y = self.screen_center_y + 250
-        #self.sound_on_button = SpriteNode('./assets/sprites/sound_on_button.png',
-                                       #parent = self,
-                                      # position = sound_on_button_position
-                                      # alpha = 0.5
-                                      # scale = self.scale_size)       
+        back_button_position = Vector2()
+        back_button_position.x = self.screen_center_x - 420
+        back_button_position.y = self.screen_center_y + 350                          
+        self.back_button = SpriteNode('./assets/sprites/back_button.JPG',
+                                       parent = self,
+                                       position = back_button_position,
+                                       scale = 0.2)               
+                                     
+        sound_on_button_position = Vector2()
+        sound_on_button_position.x = self.screen_center_x - 100
+        sound_on_button_position.y = self.screen_center_y + 250
+        self.sound_on_button = SpriteNode('./assets/sprites/sound_on_button.JPG',
+                                          parent = self,
+                                          position = sound_on_button_position,                                                               
+                                          scale = 0.1)       
         
-        #sound_off_button_position = Vector2()
-        #sound_off_button_position.x = self.screen_center_x
-        #sound_off_button_position.y = self.screen_center_y + 450
-        #self.sound_off_button = SpriteNode('./assets/sprites/sound_off_button.png',
-                                       #parent = self,
-                                      # position = sound_off_button_position
-                                      # alpha = 0.5
-                                      # scale = self.scale_size) 
+        sound_off_button_position = Vector2()
+        sound_off_button_position.x = self.screen_center_x + 100
+        sound_off_button_position.y = self.screen_center_y + 250
+        self.sound_off_button = SpriteNode('./assets/sprites/sound_off_button.JPG',
+                                           parent = self,
+                                           position = sound_off_button_position,
+                                           scale = 0.1)  
         
-        
-        #back_button_position = Vector2()
-        #back_button_position.x = 100
-        #back_button_position.y = back_button_position.y - 100
-        #self.back_button = SpriteNode('./assets/sprites/back_button.png',
-                                       #parent = self,
-                                      # position = back_button_position)     
-
-        #reset_game_button_position = Vector2()
-        #reset_game_button_position.x = 100
-        #reset_game_button_position.y = reset_game_button_position.y - 100
-        #self.reset_game_button = SpriteNode('./assets/sprites/reset_game_button.png',
-                                       #parent = self,
-                                      # position = reset_game_button_position)
+        reset_game_button_position = Vector2()
+        reset_game_button_position.x = self.screen_center_x
+        reset_game_button_position.y = self.screen_center_y - 300
+        self.reset_game_button = SpriteNode('./assets/sprites/reset_game_button.JPG',
+                                            parent = self,
+                                            position = reset_game_button_position,
+                                            scale = 0.2)
                                       
     def update(self):
         # this method is called, hopefully, 60 times a second
@@ -74,7 +70,7 @@ class SettingScene(Scene):
     def touch_ended(self, touch):
         # this method is called, when user releases a finger from the screen
         
-        # if start button is pressed, goto game scene
+        # if back button is pressed, goto game scene
         if self.back_button.frame.contains_point(touch.location):
             self.dismiss_modal_scene()
     
