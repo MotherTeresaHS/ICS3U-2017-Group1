@@ -13,26 +13,24 @@ class HelpScene(Scene):
     def setup(self):
         # this method is called, when user moves to this scene
         
-        center_of_screen = self.size/2
+        self.size_of_screen_x = self.size.x
+        self.size_of_screen_y = self.size.y
+        self.screen_center_x = self.size_of_screen_x/2
+        self.screen_center_y = self.size_of_screen_y/2
         
         # add background color
-        self.background = SpriteNode(position = self.size / 2, 
-                                     color = 'white', 
+        self.background = SpriteNode(color = 'white',
+                                     position = self.size/2, 
                                      parent = self, 
                                      size = self.size)
                                      
-        # self.information = LabelNode(text = '',
-                                      #font=('Helvetica', 20),
-                                      #parent = self,
-                                      #position = self.size / 2,
-                                      #scale = 0.75)
-                                      
-        back_button_position = self.size
-        back_button_position.x = 100
-        back_button_position.y = back_button_position.y - 100
-        #self.back_button = SpriteNode('./assets/sprites/back_button.png',
-                                       #parent = self,
-                                       #position = back_button_position)
+        back_button_position = Vector2()
+        back_button_position.x = self.screen_center_x - 420
+        back_button_position.y = self.screen_center_y + 350                          
+        self.back_button = SpriteNode('./assets/sprites/back_button.JPG',
+                                       parent = self,
+                                       position = back_button_position,
+                                       scale = 0.2)               
         
     def update(self):
         # this method is called, hopefully, 60 times a second
