@@ -8,7 +8,6 @@ import ui
 
 from main_menu_scene import *
 
-
 class HelpScene(Scene):
     def setup(self):
         # this method is called, when user moves to this scene
@@ -47,7 +46,7 @@ class HelpScene(Scene):
     def touch_ended(self, touch):
         # this method is called, when user releases a finger from the screen
         
-        # if start button is pressed, goto game scene
+        # if back button is pressed, goto main menu scene
         if self.back_button.frame.contains_point(touch.location):
             self.dismiss_modal_scene()
     
