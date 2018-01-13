@@ -1,14 +1,14 @@
 # Created by: Kay Lin
 # Created on: Dec 2017
 # Created for: ICS3U
-# This scene shows the help scene.
+# This scene shows the setting scene.
 
 from scene import *
 import ui
 
 from main_menu_scene import *
 
-class HelpScene(Scene):
+class SettingScene(Scene):
     def setup(self):
         # this method is called, when user moves to this scene
         
@@ -30,7 +30,31 @@ class HelpScene(Scene):
                                        parent = self,
                                        position = back_button_position,
                                        scale = 0.2)               
+                                     
+        sound_on_button_position = Vector2()
+        sound_on_button_position.x = self.screen_center_x - 100
+        sound_on_button_position.y = self.screen_center_y + 250
+        self.sound_on_button = SpriteNode('./assets/sprites/sound_on_button.JPG',
+                                          parent = self,
+                                          position = sound_on_button_position,                                                               
+                                          scale = 0.1)       
         
+        sound_off_button_position = Vector2()
+        sound_off_button_position.x = self.screen_center_x + 100
+        sound_off_button_position.y = self.screen_center_y + 250
+        self.sound_off_button = SpriteNode('./assets/sprites/sound_off_button.JPG',
+                                           parent = self,
+                                           position = sound_off_button_position,
+                                           scale = 0.1)  
+        
+        reset_game_button_position = Vector2()
+        reset_game_button_position.x = self.screen_center_x
+        reset_game_button_position.y = self.screen_center_y - 300
+        self.reset_game_button = SpriteNode('./assets/sprites/reset_game_button.JPG',
+                                            parent = self,
+                                            position = reset_game_button_position,
+                                            scale = 0.2)
+                                      
     def update(self):
         # this method is called, hopefully, 60 times a second
         pass
@@ -46,7 +70,7 @@ class HelpScene(Scene):
     def touch_ended(self, touch):
         # this method is called, when user releases a finger from the screen
         
-        # if back button is pressed, goto main menu scene
+        # if back button is pressed, goto game scene
         if self.back_button.frame.contains_point(touch.location):
             self.dismiss_modal_scene()
     
