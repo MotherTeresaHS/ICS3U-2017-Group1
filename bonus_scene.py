@@ -1,36 +1,29 @@
-# Created by: Kay Lin
+# Created by: Julie Nguyen
 # Created on: Dec 2017
 # Created for: ICS3U
-# This scene shows the help scene.
+# This scene shows the bonus screen.
 
 from scene import *
 import ui
 
 from main_menu_scene import *
 
-class HelpScene(Scene):
+class BonusScene(Scene):
     def setup(self):
         # this method is called, when user moves to this scene
         
+        self.score_position = Vector2()
         self.size_of_screen_x = self.size.x
         self.size_of_screen_y = self.size.y
         self.screen_center_x = self.size_of_screen_x/2
         self.screen_center_y = self.size_of_screen_y/2
         
-        # add background color
+        # add background
         self.background = SpriteNode(color = 'white',
                                      position = self.size/2, 
                                      parent = self, 
                                      size = self.size)
-                                     
-        back_button_position = Vector2()
-        back_button_position.x = self.screen_center_x - 420
-        back_button_position.y = self.screen_center_y + 350                          
-        self.back_button = SpriteNode('./assets/sprites/back_button.JPG',
-                                       parent = self,
-                                       position = back_button_position,
-                                       scale = 0.2)               
-        
+    
     def update(self):
         # this method is called, hopefully, 60 times a second
         pass
@@ -45,10 +38,7 @@ class HelpScene(Scene):
     
     def touch_ended(self, touch):
         # this method is called, when user releases a finger from the screen
-        
-        # if back button is pressed, goto main menu scene
-        if self.back_button.frame.contains_point(touch.location):
-            self.dismiss_modal_scene()
+        pass
     
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen

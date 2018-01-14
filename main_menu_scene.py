@@ -11,7 +11,7 @@ from help_scene import *
 from setting_scene import *
 from credits_scene import *
 from bonus_scene import *
-
+from pause_scene import *
 
 class MainMenuScene(Scene):
     def setup(self):
@@ -32,15 +32,15 @@ class MainMenuScene(Scene):
         start_button_position = Vector2()
         start_button_position.x = self.screen_center_x-300
         start_button_position.y = self.screen_center_y+170                           
-        start_button = SpriteNode('./assets/sprites/start_button.JPG',
+        self.start_button = SpriteNode('./assets/sprites/start_button.JPG',
                                        parent = self,
                                        position = start_button_position,
                                        scale = 0.1)
                                        
         help_button_position = Vector2() 
-        help_button_position.x = self.screen_center_x-300
-        help_button_position.y = self.screen_center_y+50                           
-        help_button = SpriteNode('./assets/sprites/help_button.JPG',
+        help_button_position.x = self.screen_center_x - 300
+        help_button_position.y = self.screen_center_y + 50                           
+        self.help_button = SpriteNode('./assets/sprites/help_button.JPG',
                                        parent = self,
                                        position = help_button_position,
                                        scale = 0.15)
@@ -48,7 +48,7 @@ class MainMenuScene(Scene):
         credits_button_position = Vector2()
         credits_button_position.x = self.screen_center_x-300
         credits_button_position.y = self.screen_center_y-70                          
-        credits_button = SpriteNode('./assets/sprites/credits_button.JPG',
+        self.credits_button = SpriteNode('./assets/sprites/credits_button.JPG',
                                        parent = self,
                                        position = credits_button_position,
                                        scale = 0.2)
@@ -56,7 +56,7 @@ class MainMenuScene(Scene):
         settings_button_position = Vector2()
         settings_button_position.x = self.screen_center_x-400                            
         settings_button_position.y = self.screen_center_y-200     
-        settings_button = SpriteNode('./assets/sprites/settings_button.JPG',
+        self.settings_button = SpriteNode('./assets/sprites/settings_button.JPG',
                                          parent = self,
                                          position = settings_button_position,
                                          scale = 0.1)
@@ -64,11 +64,18 @@ class MainMenuScene(Scene):
         bonus_button_position = Vector2()
         bonus_button_position.x = self.screen_center_x-200
         bonus_button_position.y = self.screen_center_y-200                           
-        bonus_button = SpriteNode('./assets/sprites/bonus_button.JPG',
+        self.bonus_button = SpriteNode('./assets/sprites/bonus_button.JPG',
                                        parent = self,
                                        position = bonus_button_position,
                                        scale = 0.15)                                                                                       
     
+        pause_button_position = Vector2()
+        pause_button_position.x = self.screen_center_x-300
+        pause_button_position.y = self.screen_center_y+300                          
+        self.pause_button = SpriteNode('./assets/sprites/pause.JPG',
+                                       parent = self,
+                                       position = pause_button_position,
+                                       scale = 0.1)
     def update(self):
         # this method is called, hopefully, 60 times a second
         pass
@@ -104,6 +111,9 @@ class MainMenuScene(Scene):
         if self.bonus_button.frame.contains_point(touch.location):
             self.present_modal_scene(BonusScene())
         
+        # if pause button is pressed, goto pause scene
+        if self.pause_button.frame.contains_point(touch.location):
+            self.present_modal_scene(PauseScene())
     
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen
