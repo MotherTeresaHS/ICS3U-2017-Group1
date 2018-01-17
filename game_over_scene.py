@@ -5,9 +5,10 @@
 
 from scene import *
 import ui
+import config
 
 from main_menu_scene import *
-#from level_1_scene import
+#from level_1 import *
 
 class GameOverScene(Scene):
     def setup(self):
@@ -57,8 +58,11 @@ class GameOverScene(Scene):
         
         # if home button is pressed, goto MainMenuScene scene
         if self.home_button.frame.contains_point(touch.location):
+            config.game_over = True
             self.dismiss_modal_scene()
-    
+            
+        # if retry button is pressed, restart the game
+        
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen
         # thus changing the size of each dimension

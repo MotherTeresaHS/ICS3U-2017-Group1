@@ -5,13 +5,13 @@
 
 from scene import *
 import ui
+import dialogs
 
 from levels_list_scene import *
 from help_scene import *
 from setting_scene import *
 from credits_scene import *
 from bonus_scene import *
-from pause_scene import *
 
 class MainMenuScene(Scene):
     def setup(self):
@@ -69,13 +69,6 @@ class MainMenuScene(Scene):
                                        position = bonus_button_position,
                                        scale = 0.15)                                                                                       
     
-        pause_button_position = Vector2()
-        pause_button_position.x = self.screen_center_x-300
-        pause_button_position.y = self.screen_center_y+300                          
-        self.pause_button = SpriteNode('./assets/sprites/pause.JPG',
-                                       parent = self,
-                                       position = pause_button_position,
-                                       scale = 0.1)
     def update(self):
         # this method is called, hopefully, 60 times a second
         pass
@@ -109,11 +102,10 @@ class MainMenuScene(Scene):
         
         # if bonus button is pressed, goto game scene
         if self.bonus_button.frame.contains_point(touch.location):
-            self.present_modal_scene(BonusScene())
-        
-        # if pause button is pressed, goto pause scene
-        if self.pause_button.frame.contains_point(touch.location):
-            self.present_modal_scene(PauseScene())
+            locked = dialogs.alert(title = "Temporarily Locked",
+                                   message = "This scene will be locked until the next update where all levels will be added.",
+                                   button1 = "OK",
+                                   hide_cancel_button = True)
     
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen
