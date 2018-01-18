@@ -24,7 +24,7 @@ class Level1Scene(Scene):
                                      parent = self, 
                                      size = self.size)
                                      
-        pause_button_position = Vector2()
+        pause_button_position = Vector2()  
         pause_button_position.x = self.screen_center_x + 440
         pause_button_position.y = self.screen_center_y + 320                          
         self.pause_button = SpriteNode('./assets/sprites/pause.JPG',
@@ -35,7 +35,7 @@ class Level1Scene(Scene):
         health_bar_1_position = Vector2()
         health_bar_1_position.x = self.screen_center_x - 440
         health_bar_1_position.y = self.screen_center_y + 320
-        self.health_1 = SpriteNode('./assets/sprites/health.PNG',
+        self.health_1 = SpriteNode('./assets/sprites/heart_sprite.png',
                                    parent = self,
                                    position = health_bar_1_position,
                                    scale = 0.05)
@@ -43,7 +43,7 @@ class Level1Scene(Scene):
         health_bar_2_position = Vector2()
         health_bar_2_position.x = self.screen_center_x - 375
         health_bar_2_position.y = self.screen_center_y + 320
-        self.health_2 = SpriteNode('./assets/sprites/health.PNG',
+        self.health_2 = SpriteNode('./assets/sprites/heart_sprite.png',
                                    parent = self,
                                    position = health_bar_2_position,
                                    scale = 0.05)
@@ -51,7 +51,7 @@ class Level1Scene(Scene):
         health_bar_3_position = Vector2()
         health_bar_3_position.x = self.screen_center_x - 310
         health_bar_3_position.y = self.screen_center_y + 320
-        self.health_3 = SpriteNode('./assets/sprites/health.PNG',
+        self.health_3 = SpriteNode('./assets/sprites/heart_sprite.png',
                                    parent = self,
                                    position = health_bar_3_position,
                                    scale = 0.05)
@@ -59,10 +59,10 @@ class Level1Scene(Scene):
         squareman_position = Vector2()
         squareman_position.x = self.screen_center_x - 440
         squareman_position.y = self.screen_center_y 
-        self.squaremam = SpriteNode('./assets/sprites/squareman.PNG',
+        self.squaremam = SpriteNode('./assets/sprites/squareman.png',
                                     parent = self,
                                     position = squareman_position,
-                                    scale = 0.7)
+                                    scale = 0.8)
         blob_position = Vector2()
         blob_position.x = self.screen_center_x + 380
         blob_position.y = self.screen_center_y + 40
@@ -74,10 +74,26 @@ class Level1Scene(Scene):
         shoot_button_position = Vector2()
         shoot_button_position.x = self.screen_center_x - 410
         shoot_button_position.y = self.screen_center_y - 280
-        self.shoot_button = SpriteNode('./assets/sprites/shoot_button.PNG',
+        self.shoot_button = SpriteNode('./assets/sprites/shoot_button.png',
                                     parent = self,
                                     position = shoot_button_position,
-                                    scale = 0.1)
+                                    scale = 0.7)
+                                    
+        jump_button_position = Vector2()
+        jump_button_position.x = self.screen_center_x + 410
+        jump_button_position.y = self.screen_center_y - 280
+        self.jump_button = SpriteNode('./assets/sprites/jump_button.png',
+                                    parent = self,
+                                    position = jump_button_position,
+                                    scale = 0.7)
+                                    
+        special_button_position = Vector2()
+        special_button_position.x = self.screen_center_x + 240
+        special_button_position.y = self.screen_center_y - 280
+        self.special_button = SpriteNode('./assets/sprites/special_button.png',
+                                    parent = self,
+                                    position = special_button_position,
+                                    scale = 0.7)
     def update(self):
         # this method is called, hopefully, 60 times a second
         pass

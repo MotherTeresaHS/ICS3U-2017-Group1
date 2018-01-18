@@ -32,26 +32,26 @@ class MainMenuScene(Scene):
         start_button_position = Vector2()
         start_button_position.x = self.screen_center_x-300
         start_button_position.y = self.screen_center_y+170                           
-        self.start_button = SpriteNode('./assets/sprites/start_button.JPG',
+        self.start_button = SpriteNode('./assets/sprites/start_button.png',
                                        parent = self,
                                        position = start_button_position,
-                                       scale = 0.1)
+                                       scale = 1.0)
                                        
         help_button_position = Vector2() 
         help_button_position.x = self.screen_center_x - 300
         help_button_position.y = self.screen_center_y + 50                           
-        self.help_button = SpriteNode('./assets/sprites/help_button.JPG',
+        self.help_button = SpriteNode('./assets/sprites/help_button.png',
                                        parent = self,
                                        position = help_button_position,
-                                       scale = 0.15)
+                                       scale = 1.0)
                                        
         credits_button_position = Vector2()
         credits_button_position.x = self.screen_center_x-300
         credits_button_position.y = self.screen_center_y-70                          
-        self.credits_button = SpriteNode('./assets/sprites/credits_button.JPG',
+        self.credits_button = SpriteNode('./assets/sprites/credits_button.png',
                                        parent = self,
                                        position = credits_button_position,
-                                       scale = 0.2)
+                                       scale = 1.0)
                                                                      
         settings_button_position = Vector2()
         settings_button_position.x = self.screen_center_x-400                            
