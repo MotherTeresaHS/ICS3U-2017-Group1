@@ -59,21 +59,14 @@ class PauseScene(Scene):
                                             position = question_mark_button_position,
                                             scale = 0.6)
                                             
-        level_list_button_position = Vector2()
-        level_list_button_position.x = self.screen_center_x - 90
-        level_list_button_position.y = self.screen_center_y - 160
-        self.level_list_button = SpriteNode('./assets/sprites/levels_list_button.png',
-                                            parent = self,
-                                            position = level_list_button_position,
-                                            scale = 0.6)
-                                            
+        
         home_button_position = Vector2()
-        home_button_position.x = self.screen_center_x + 90
+        home_button_position.x = self.screen_center_x
         home_button_position.y = self.screen_center_y - 160
-        self.home_button = SpriteNode('./assets/sprites/main_menu_button.png',
+        self.home_button = SpriteNode('./assets/sprites/main_menu_button.PNG',
                                             parent = self,
                                             position = home_button_position,
-                                            scale = 0.6)                                    
+                                            scale = 1.5)                                    
                                                                    
     def update(self):
         # this method is called, hopefully, 60 times a second
@@ -107,10 +100,6 @@ class PauseScene(Scene):
         if self.home_button.frame.contains_point(touch.location):
             config.pressed_pause = True
             self.dismiss_modal_scene()
-        
-        # if levels button is pressed, goto levels list scene
-        if self.level_list_button.frame.contains_point(touch.location):
-            self.present_modal_scene(LevelsListScene())
                                 
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen
