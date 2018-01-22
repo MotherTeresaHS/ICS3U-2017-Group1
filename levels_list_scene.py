@@ -6,6 +6,7 @@
 from scene import *
 import ui
 from level_1 import *
+import config
 
 class LevelsListScene(Scene):
     def setup(self):
@@ -25,46 +26,47 @@ class LevelsListScene(Scene):
         level_1_button_position = Vector2()
         level_1_button_position.x = self.screen_center_x-350
         level_1_button_position.y = self.screen_center_y
-        self.level_1_button = SpriteNode('./assets/sprites/level_1_button.JPG',
+        self.level_1_button = SpriteNode('./assets/sprites/level_1_button.png',
                                        parent = self,
                                        position = level_1_button_position,
-                                       scale = 0.3)
+                                       scale = 1.0)
                                        
         level_2_button_position = Vector2()
         level_2_button_position.x = self.screen_center_x-120
         level_2_button_position.y = self.screen_center_y
-        self.level_2_button = SpriteNode('./assets/sprites/level_2_button.PNG',
+        self.level_2_button = SpriteNode('./assets/sprites/level_locked_button.png',
                                        parent = self,
                                        position = level_2_button_position,
-                                       scale = 0.45)
+                                       scale = 1.0)
                                            
         level_3_button_position = Vector2()
         level_3_button_position.x = self.screen_center_x+120
         level_3_button_position.y = self.screen_center_y
-        self.level_3_button = SpriteNode('./assets/sprites/level_3_button.PNG',
+        self.level_3_button = SpriteNode('./assets/sprites/level_locked_button.png',
                                        parent = self,
                                        position = level_3_button_position,
-                                       scale = 0.45)
+                                       scale = 1.0)
                                        
         level_4_button_position = Vector2()
         level_4_button_position.x = self.screen_center_x+350
         level_4_button_position.y = self.screen_center_y
-        self.level_4_button = SpriteNode('./assets/sprites/level_4_button.PNG',
+        self.level_4_button = SpriteNode('./assets/sprites/level_locked_button.png',
                                        parent = self,
                                        position = level_4_button_position,
-                                       scale = 0.45)
+                                       scale = 1.0)
                                        
         back_button_position = Vector2()
         back_button_position.x = self.screen_center_x - 440
-        back_button_position.y = self.screen_center_y + 320                          
-        self.back_button = SpriteNode('./assets/sprites/back_button.JPG',
+        back_button_position.y = self.screen_center_y + 300                          
+        self.back_button = SpriteNode('./assets/sprites/back_button.png',
                                        parent = self,
                                        position = back_button_position,
-                                       scale = 0.2)
+                                       scale = 0.9)
     
     def update(self):
         # this method is called, hopefully, 60 times a second
-        pass
+        if config.pressed_pause == True:
+            self.dismiss_modal_scene()
     
     def touch_began(self, touch):
         # this method is called, when user touches the screen
@@ -80,7 +82,13 @@ class LevelsListScene(Scene):
         # if level 1 button is pressed, go to level 1 scene
         if self.level_1_button.frame.contains_point(touch.location):
             self.present_modal_scene(Level1Scene())
-            
+        
+        if self.level_2_button.frame.contains_point(touch.location) or self.level_3_button.frame.contains_point(touch.location) or self.level_4_button.frame.contains_point(touch.location):
+            unavailable = dialogs.alert(title = "Level Unavailable",
+                                   message = "Levels 2 to 4 are currently unavailable",
+                                   button1 = "OK",
+                                   hide_cancel_button = True)
+        
         # if back button is pressed, go to previous scene
         if self.back_button.frame.contains_point(touch.location):
             self.dismiss_modal_scene()

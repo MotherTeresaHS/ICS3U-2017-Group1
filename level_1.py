@@ -18,6 +18,7 @@ class Level1Scene(Scene):
         self.screen_center_x = self.size_of_screen_x/2
         self.screen_center_y = self.size_of_screen_y/2
         
+        self.algebra = []
         # add background color
         self.background = SpriteNode(position = self.size / 2, 
                                      color = 'white', 
@@ -27,10 +28,10 @@ class Level1Scene(Scene):
         pause_button_position = Vector2()  
         pause_button_position.x = self.screen_center_x + 440
         pause_button_position.y = self.screen_center_y + 320                          
-        self.pause_button = SpriteNode('./assets/sprites/pause.JPG',
+        self.pause_button = SpriteNode('./assets/sprites/pause_button.png',
                                        parent = self,
                                        position = pause_button_position,
-                                       scale = 0.1)
+                                       scale = 0.8)
                                        
         health_bar_1_position = Vector2()
         health_bar_1_position.x = self.screen_center_x - 440
@@ -97,6 +98,10 @@ class Level1Scene(Scene):
     def update(self):
         # this method is called, hopefully, 60 times a second
         pass
+        # for algebra_line in self.algebra:
+            #if algebra_line.position.y > self.size_of_screen_y + 50:
+                #algebra_line.remove_from_parent()
+                #self.algebra.remove(algebra_line)
     
     def touch_began(self, touch):
         # this method is called, when user touches the screen
@@ -110,6 +115,9 @@ class Level1Scene(Scene):
         # this method is called, when user releases a finger from the screen
         if self.pause_button.frame.contains_point(touch.location):
             self.present_modal_scene(PauseScene())
+            
+        #if self.shoot_button.frame.contains_point(touch.location):
+            #self.create_new_algebra_line()
     
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen
@@ -126,3 +134,24 @@ class Level1Scene(Scene):
         # back into use. Reload anything you might need.
         pass
     
+    def create_new_algebra_line(self):
+        pass
+        # when the user hits the shoot button, a new line of algebra will be made
+        #algebra_line_start_position = Vector2()
+        #algebra_line_position.x = 100
+        #algebra_line_position.y = self.squaremam.position.y
+        
+        #algebra_line_position = Vector2()
+        #algebra_line_position.x = missile_start_position.x
+        #algebra_line_position.y = self.size_of_screen_y + 100
+        
+        #self.algebra.append(SpriteNode('./assets/sprites/algebra_line.png',
+                             #position = algebra_line_start_position,
+                             #parent = self))
+                             
+        # make algebra line move forward
+        #algebraLineMoveAction = Action.move_to(algebra_line_end_position.x,
+                                           #algebra_line_end_position.y + 100,
+                                           #5.0)
+        #self.algebra[len(self.algebra)-1].run_action(algebraLineMoveAction)
+        

@@ -24,36 +24,36 @@ class SettingScene(Scene):
                                      size = self.size)
                                      
         back_button_position = Vector2()
-        back_button_position.x = self.screen_center_x - 420
-        back_button_position.y = self.screen_center_y + 350                          
-        self.back_button = SpriteNode('./assets/sprites/back_button.JPG',
+        back_button_position.x = self.screen_center_x - 440
+        back_button_position.y = self.screen_center_y + 300               
+        self.back_button = SpriteNode('./assets/sprites/back_button.png',
                                        parent = self,
                                        position = back_button_position,
-                                       scale = 0.2)               
+                                       scale = 0.9)
                                      
         sound_on_button_position = Vector2()
         sound_on_button_position.x = self.screen_center_x - 100
         sound_on_button_position.y = self.screen_center_y + 250
-        self.sound_on_button = SpriteNode('./assets/sprites/sound_on_button.JPG',
+        self.sound_on_button = SpriteNode('./assets/sprites/sound_on_button.png',
                                           parent = self,
                                           position = sound_on_button_position,                                                               
-                                          scale = 0.1)       
+                                          scale = 0.8)       
         
         sound_off_button_position = Vector2()
         sound_off_button_position.x = self.screen_center_x + 100
         sound_off_button_position.y = self.screen_center_y + 250
-        self.sound_off_button = SpriteNode('./assets/sprites/sound_off_button.JPG',
+        self.sound_off_button = SpriteNode('./assets/sprites/sound_off_button.png',
                                            parent = self,
                                            position = sound_off_button_position,
-                                           scale = 0.1)  
+                                           scale = 0.8)  
         
         reset_game_button_position = Vector2()
         reset_game_button_position.x = self.screen_center_x
         reset_game_button_position.y = self.screen_center_y - 300
-        self.reset_game_button = SpriteNode('./assets/sprites/reset_game_button.JPG',
+        self.reset_game_button = SpriteNode('./assets/sprites/reset_game_button.png',
                                             parent = self,
                                             position = reset_game_button_position,
-                                            scale = 0.2)
+                                            scale = 1.0)
                                       
     def update(self):
         # this method is called, hopefully, 60 times a second
