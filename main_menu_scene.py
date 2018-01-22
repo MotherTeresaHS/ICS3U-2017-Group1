@@ -30,44 +30,44 @@ class MainMenuScene(Scene):
                                      size = self.size)
                                      
         start_button_position = Vector2()
-        start_button_position.x = self.screen_center_x-300
-        start_button_position.y = self.screen_center_y+170                           
+        start_button_position.x = self.screen_center_x-290
+        start_button_position.y = self.screen_center_y+160                        
         self.start_button = SpriteNode('./assets/sprites/start_button.png',
                                        parent = self,
                                        position = start_button_position,
                                        scale = 1.0)
                                        
         help_button_position = Vector2() 
-        help_button_position.x = self.screen_center_x - 300
-        help_button_position.y = self.screen_center_y + 50                           
+        help_button_position.x = self.screen_center_x - 290
+        help_button_position.y = self.screen_center_y + 50
         self.help_button = SpriteNode('./assets/sprites/help_button.png',
                                        parent = self,
                                        position = help_button_position,
                                        scale = 1.0)
                                        
         credits_button_position = Vector2()
-        credits_button_position.x = self.screen_center_x-300
-        credits_button_position.y = self.screen_center_y-70                          
+        credits_button_position.x = self.screen_center_x-290
+        credits_button_position.y = self.screen_center_y-60              
         self.credits_button = SpriteNode('./assets/sprites/credits_button.png',
                                        parent = self,
                                        position = credits_button_position,
                                        scale = 1.0)
                                                                      
         settings_button_position = Vector2()
-        settings_button_position.x = self.screen_center_x-400                            
-        settings_button_position.y = self.screen_center_y-200     
-        self.settings_button = SpriteNode('./assets/sprites/settings_button.JPG',
+        settings_button_position.x = self.screen_center_x-390                     
+        settings_button_position.y = self.screen_center_y-170     
+        self.settings_button = SpriteNode('./assets/sprites/settings_button.png',
                                          parent = self,
                                          position = settings_button_position,
-                                         scale = 0.1)
+                                         scale = 1.0)
                                          
         bonus_button_position = Vector2()
-        bonus_button_position.x = self.screen_center_x-200
-        bonus_button_position.y = self.screen_center_y-200                           
-        self.bonus_button = SpriteNode('./assets/sprites/bonus_button.JPG',
+        bonus_button_position.x = self.screen_center_x-190
+        bonus_button_position.y = self.screen_center_y-170                           
+        self.bonus_button = SpriteNode('./assets/sprites/locked_bonus_button.png',
                                        parent = self,
                                        position = bonus_button_position,
-                                       scale = 0.15)                                                                                       
+                                       scale = 1.0)                                                                                       
     
     def update(self):
         # this method is called, hopefully, 60 times a second
@@ -103,7 +103,7 @@ class MainMenuScene(Scene):
         # if bonus button is pressed, goto game scene
         if self.bonus_button.frame.contains_point(touch.location):
             locked = dialogs.alert(title = "Temporarily Locked",
-                                   message = "This scene will be locked until the next update where all levels will be added.",
+                                   message = "This feature will be locked until the next update where all levels will be added.",
                                    button1 = "OK",
                                    hide_cancel_button = True)
     

@@ -24,12 +24,12 @@ class HelpScene(Scene):
                                      size = self.size)
                                      
         back_button_position = Vector2()
-        back_button_position.x = self.screen_center_x - 420
-        back_button_position.y = self.screen_center_y + 350                          
-        self.back_button = SpriteNode('./assets/sprites/back_button.JPG',
+        back_button_position.x = self.screen_center_x - 440
+        back_button_position.y = self.screen_center_y + 300                          
+        self.back_button = SpriteNode('./assets/sprites/back_button.png',
                                        parent = self,
                                        position = back_button_position,
-                                       scale = 0.2)               
+                                       scale = 0.9)
         
     def update(self):
         # this method is called, hopefully, 60 times a second

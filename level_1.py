@@ -18,6 +18,7 @@ class Level1Scene(Scene):
         self.screen_center_x = self.size_of_screen_x/2
         self.screen_center_y = self.size_of_screen_y/2
         
+        self.algebra = []
         # add background color
         self.background = SpriteNode(position = self.size / 2, 
                                      color = 'white', 
@@ -27,10 +28,10 @@ class Level1Scene(Scene):
         pause_button_position = Vector2()  
         pause_button_position.x = self.screen_center_x + 440
         pause_button_position.y = self.screen_center_y + 320                          
-        self.pause_button = SpriteNode('./assets/sprites/pause.JPG',
+        self.pause_button = SpriteNode('./assets/sprites/pause_button.png',
                                        parent = self,
                                        position = pause_button_position,
-                                       scale = 0.1)
+                                       scale = 0.8)
                                        
         health_bar_1_position = Vector2()
         health_bar_1_position.x = self.screen_center_x - 440
@@ -59,17 +60,17 @@ class Level1Scene(Scene):
         squareman_position = Vector2()
         squareman_position.x = self.screen_center_x - 440
         squareman_position.y = self.screen_center_y 
-        self.squaremam = SpriteNode('./assets/sprites/squareman.png',
+        self.squareman = SpriteNode('./assets/sprites/squareman.png',
                                     parent = self,
                                     position = squareman_position,
                                     scale = 0.8)
         blob_position = Vector2()
         blob_position.x = self.screen_center_x + 380
         blob_position.y = self.screen_center_y + 40
-        self.blob = SpriteNode('./assets/sprites/blob.PNG',
+        self.blob = SpriteNode('./assets/sprites/blob.png',
                                     parent = self,
                                     position = blob_position,
-                                    scale = 0.15)
+                                    scale = 1.0)
                                     
         shoot_button_position = Vector2()
         shoot_button_position.x = self.screen_center_x - 410
@@ -96,7 +97,12 @@ class Level1Scene(Scene):
                                     scale = 0.7)
     def update(self):
         # this method is called, hopefully, 60 times a second
-        pass
+        
+        # check every update if a algebra line is off the screen
+        for algebra_line in self.algebra:
+            if algebra_line.position.x > self.size_of_screen_x - 5:
+                algebra_line.remove_from_parent()
+                self.algebra.remove(algebra_line)
     
     def touch_began(self, touch):
         # this method is called, when user touches the screen
@@ -110,6 +116,12 @@ class Level1Scene(Scene):
         # this method is called, when user releases a finger from the screen
         if self.pause_button.frame.contains_point(touch.location):
             self.present_modal_scene(PauseScene())
+            
+        if self.shoot_button.frame.contains_point(touch.location):
+            self.create_new_algebra_line()
+        
+        if self.jump_button.frame.contains_point(touch.location):
+            pass
     
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen
@@ -126,3 +138,25 @@ class Level1Scene(Scene):
         # back into use. Reload anything you might need.
         pass
     
+    def create_new_algebra_line(self):
+        # when the user hits the shoot button, a new line of algebra will be made
+        algebra_line_start_position = self.squareman.position
+        algebra_line_start_position.x = self.squareman.position.x + 100
+        
+        algebra_line_end_position = self.size
+        algebra_line_end_position.y = algebra_line_start_position.y
+        
+        self.algebra.append(SpriteNode('./assets/sprites/algebra_temp.PNG',
+                             position = algebra_line_start_position,
+                             parent = self))
+                             
+        # make algebra line move forward
+        algebraLineMoveAction = Action.move_to(algebra_line_end_position.x,
+                                           algebra_line_end_position.y,
+                                           7.0)
+        self.algebra[len(self.algebra)-1].run_action(algebraLineMoveAction)
+        
+    def squareman_jump(self):
+        # when the user presses the jump button, squareman will jump up and come back to his original starting point
+        pass
+        
