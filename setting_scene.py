@@ -5,7 +5,8 @@
 
 from scene import *
 import ui
-
+import sound
+import config
 from main_menu_scene import *
 
 class SettingScene(Scene):
@@ -17,6 +18,15 @@ class SettingScene(Scene):
         self.screen_center_x = self.size_of_screen_x/2
         self.screen_center_y = self.size_of_screen_y/2
         
+        # music is be played or not
+        # you can turn on/off the music in setting scene
+        if config.music_on == True:
+           config.main_menu_music.number_of_loops = -1
+           config.main_menu_music.play()
+        elif config.music_on == False:
+           config.main_menu_music.pause()
+           
+           
         # add background color
         self.background = SpriteNode(color = 'white',
                                      position = self.size/2, 
@@ -73,7 +83,17 @@ class SettingScene(Scene):
         # if back button is pressed, goto game scene
         if self.back_button.frame.contains_point(touch.location):
             self.dismiss_modal_scene()
-    
+        
+        # if sound_on button is pressed, turn on the music
+        if self.sound_on_button.frame.contains_point(touch.location):
+            config.main_menu_music.play()
+            config.music_on = True
+            
+        # if sound_off button is pressed, turn off the music
+        if self.sound_off_button.frame.contains_point(touch.location):
+            config.main_menu_music.pause()
+            config.music_on = False
+            
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen
         # thus changing the size of each dimension
