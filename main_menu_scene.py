@@ -6,7 +6,7 @@
 from scene import *
 import ui
 import dialogs
-
+import sound
 from levels_list_scene import *
 from help_scene import *
 from setting_scene import *
@@ -28,7 +28,14 @@ class MainMenuScene(Scene):
                                      position = self.size/2, 
                                      parent = self, 
                                      size = self.size)
-                                     
+        
+        # check if music is being played or not
+        # you can turn on/off the music in setting scene
+        if config.music_on == True:
+           config.main_menu_music.play()
+        elif config.music_on == False:
+           config.main_menu_music.pause()
+                                         
         start_button_position = Vector2()
         start_button_position.x = self.screen_center_x-290
         start_button_position.y = self.screen_center_y+160                        
