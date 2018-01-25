@@ -22,6 +22,13 @@ class LevelCompletedScene(Scene):
                                      parent = self, 
                                      size = self.size)
                                      
+        discoman_position = Vector2()
+        discoman_position.x = self.screen_center_x - 360
+        discoman_position.y = self.screen_center_y - 120
+        self.discoman = SpriteNode('./assets/sprites/disco_square_2.png',
+                                   position = discoman_position,
+                                   parent = self)
+                                   
         home_button_position = Vector2()
         home_button_position.x = self.screen_center_x + 350
         home_button_position.y = self.screen_center_y + 50
