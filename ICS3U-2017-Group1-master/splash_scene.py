@@ -1,42 +1,39 @@
-# Created by: Kay Lin
-# Created on: Dec 2017
+# Created by: Mr. Coxall
+# Created on: Nov 2017
 # Created for: ICS3U
-# This scene shows the credits scene.
+# This scene shows a splash screen for 2 seconds,
+#   then transitions to the main menu.
 
 from scene import *
 import ui
+import time
 
 from main_menu_scene import *
+from team_splash_scene import *
 
-
-class CreditsScene(Scene):
+class SplashScene(Scene):
     def setup(self):
         # this method is called, when user moves to this scene
         
-        self.score_position = Vector2()
-        self.size_of_screen_x = self.size.x
-        self.size_of_screen_y = self.size.y
-        self.screen_center_x = self.size_of_screen_x/2
-        self.screen_center_y = self.size_of_screen_y/2 
-        self.scale_size = 0.5
+        # create timer, so that after 2 seconds move to next scene
+        self.start_time = time.time()
         
-        # add background color
-        self.background = SpriteNode('./assets/sprites/credits.JPG',
-                                     position = self.size/2, 
+        # add MT blue background color
+        self.background = SpriteNode(position = self.size / 2, 
+                                     color = (0.61, 0.78, 0.87), 
                                      parent = self, 
                                      size = self.size)
-                                     
-        back_button_position = Vector2()
-        back_button_position.x = self.screen_center_x - 440
-        back_button_position.y = self.screen_center_y + 300                     
-        self.back_button = SpriteNode('./assets/sprites/back_button.png',
+        self.school_crest = SpriteNode('./assets/sprites/MT_Game_Studio.png',
                                        parent = self,
-                                       position = back_button_position,
-                                       scale = 0.9)                       
-        
+                                       position = self.size/2,
+                                       size = self.size)
+    
     def update(self):
         # this method is called, hopefully, 60 times a second
-        pass
+        
+        # after 2 seconds, move to main menu scene
+        if not self.presented_scene and time.time() - self.start_time > 1:
+            self.present_modal_scene(TeamSplashScene())
     
     def touch_began(self, touch):
         # this method is called, when user touches the screen
@@ -48,10 +45,7 @@ class CreditsScene(Scene):
     
     def touch_ended(self, touch):
         # this method is called, when user releases a finger from the screen
-        
-        # if back button is pressed, goto game scene
-        if self.back_button.frame.contains_point(touch.location):
-            self.dismiss_modal_scene()
+        pass
     
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen

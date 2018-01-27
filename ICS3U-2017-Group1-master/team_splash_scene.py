@@ -1,39 +1,35 @@
 # Created by: Kay Lin
 # Created on: Dec 2017
 # Created for: ICS3U
-# This scene shows the help scene.
+# This scene shows a splash screen for 2 seconds,
+#   then transitions to the main menu.
 
 from scene import *
 import ui
+import time
 
 from main_menu_scene import *
 
-class HelpScene(Scene):
+
+class TeamSplashScene(Scene):
     def setup(self):
         # this method is called, when user moves to this scene
         
-        self.size_of_screen_x = self.size.x
-        self.size_of_screen_y = self.size.y
-        self.screen_center_x = self.size_of_screen_x/2
-        self.screen_center_y = self.size_of_screen_y/2
+        # create timer, so that after 2 seconds move to next scene
+        self.start_time = time.time()
         
-        # add background color
-        self.background = SpriteNode(color = 'white',
+        # add team background 
+        self.background = SpriteNode('./assets/sprites/team_splash_screen.png',
                                      position = self.size/2, 
                                      parent = self, 
                                      size = self.size)
-                                     
-        back_button_position = Vector2()
-        back_button_position.x = self.screen_center_x - 440
-        back_button_position.y = self.screen_center_y + 300                          
-        self.back_button = SpriteNode('./assets/sprites/back_button.png',
-                                       parent = self,
-                                       position = back_button_position,
-                                       scale = 0.9)
-        
+    
     def update(self):
         # this method is called, hopefully, 60 times a second
-        pass
+        
+        # after 2 seconds, move to main menu scene
+        if not self.presented_scene and time.time() - self.start_time > 1:
+            self.present_modal_scene(MainMenuScene())
     
     def touch_began(self, touch):
         # this method is called, when user touches the screen
@@ -45,10 +41,7 @@ class HelpScene(Scene):
     
     def touch_ended(self, touch):
         # this method is called, when user releases a finger from the screen
-        
-        # if back button is pressed, goto main menu scene
-        if self.back_button.frame.contains_point(touch.location):
-            self.dismiss_modal_scene()
+        pass
     
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen

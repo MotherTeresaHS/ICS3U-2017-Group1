@@ -24,7 +24,7 @@ class MainMenuScene(Scene):
         self.screen_center_y = self.size_of_screen_y/2
         
         # add background
-        self.background = SpriteNode('./assets/sprites/main_menu_background.JPG',
+        self.background = SpriteNode('./assets/sprites/main_menu_final.png',
                                      position = self.size/2, 
                                      parent = self, 
                                      size = self.size)
@@ -93,6 +93,11 @@ class MainMenuScene(Scene):
         
         # if start button is pressed, goto game scene
         if self.start_button.frame.contains_point(touch.location):
+            config.pressed_home = False
+            config.game_over = False
+            config.score = 0
+            config.blob_hit = 0
+            config.squareman_hit = 0
             self.present_modal_scene(LevelsListScene())
             
         # if help button is pressed, goto game scene

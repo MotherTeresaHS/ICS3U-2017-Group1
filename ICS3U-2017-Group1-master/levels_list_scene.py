@@ -18,8 +18,8 @@ class LevelsListScene(Scene):
         self.screen_center_y = self.size_of_screen_y/2
         
         # add background
-        self.background = SpriteNode(position = self.size / 2, 
-                                     color = 'green', 
+        self.background = SpriteNode('./assets/sprites/background_standard.png',
+                                     position = self.size / 2, 
                                      parent = self, 
                                      size = self.size)
                                      
@@ -65,7 +65,7 @@ class LevelsListScene(Scene):
     
     def update(self):
         # this method is called, hopefully, 60 times a second
-        if config.pressed_pause == True:
+        if config.pressed_home or config.game_over == True:
             self.dismiss_modal_scene()
     
     def touch_began(self, touch):

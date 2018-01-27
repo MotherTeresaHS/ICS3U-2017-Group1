@@ -1,16 +1,14 @@
 # Created by: Kay Lin
 # Created on: Dec 2017
 # Created for: ICS3U
-# This scene shows the game over scene.
+# This scene shows the help scene.
 
 from scene import *
 import ui
-import config
 
 from main_menu_scene import *
-#from level_1 import *
 
-class GameOverScene(Scene):
+class HelpScene(Scene):
     def setup(self):
         # this method is called, when user moves to this scene
         
@@ -20,27 +18,25 @@ class GameOverScene(Scene):
         self.screen_center_y = self.size_of_screen_y/2
         
         # add background color
-        self.background = SpriteNode(color = './assets/sprites/game_over_background.JPG',
+        self.background = SpriteNode('./assets/sprites/help_bg.png',
                                      position = self.size/2, 
                                      parent = self, 
                                      size = self.size)
                                      
-        home_button_position = Vector2()
-        home_button_position.x = self.screen_center_x
-        home_button_position.y = self.screen_center_y - 300
-        self.home_button = SpriteNode('./assets/sprites/home_button.JPG',
-                                            parent = self,
-                                            position = home_button_position,
-                                            scale = 0.2)            
+        back_button_position = Vector2()
+        back_button_position.x = self.screen_center_x - 440
+        back_button_position.y = self.screen_center_y + 300                          
+        self.back_button = SpriteNode('./assets/sprites/back_button.png',
+                                       parent = self,
+                                       position = back_button_position,
+                                       scale = 0.9)
+                                       
+        #self.help_info = LabelNode(text = "Use the shoot button to blast those nasty blobs away with algebra.",
+                                   #font = ('Menlo-Bold', 40),
+                                   #color = 'white',
+                                   #parent = self,
+                                   #position = self.size)
         
-        retry_button_position = Vector2()
-        retry_button_position.x = self.screen_center_x
-        retry_game_button_position.y = self.screen_center_y - 300
-        self.retry_button = SpriteNode('./assets/sprites/retry_button.JPG',
-                                            parent = self,
-                                            position = retry_button_position,
-                                            scale = 0.2)
-                                      
     def update(self):
         # this method is called, hopefully, 60 times a second
         pass
@@ -56,13 +52,10 @@ class GameOverScene(Scene):
     def touch_ended(self, touch):
         # this method is called, when user releases a finger from the screen
         
-        # if home button is pressed, goto MainMenuScene scene
-        if self.home_button.frame.contains_point(touch.location):
-            config.game_over = True
+        # if back button is pressed, goto main menu scene
+        if self.back_button.frame.contains_point(touch.location):
             self.dismiss_modal_scene()
-            
-        # if retry button is pressed, restart the game
-        
+    
     def did_change_size(self):
         # this method is called, when user changes the orientation of the screen
         # thus changing the size of each dimension
